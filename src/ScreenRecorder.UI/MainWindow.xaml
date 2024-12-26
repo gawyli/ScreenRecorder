@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="ScreenRecorder.UI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScreenRecorder.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="MainWindow">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu Section -->
+        <StackPanel Grid.Column="0" Background="#1e1e1e" Orientation="Vertical" Padding="10">
+            <Button Content="Start Capture" Name="StartSessionButton" Margin="5" Click="StartSessionButton_Click"
+                    Background="#03a9f4" Foreground="White" FontWeight="Bold" />
+            <!--<Button Content="Exit Application" Name="ExitButton" Margin="5" Click="ExitButton_Click"
+                    Background="#f44336" Foreground="White" FontWeight="Bold" />-->
+        </StackPanel>
+
+        <!-- Content Section -->
+        <Frame Grid.Column="1" Name="ContentFrame" Background="#1e1e1e"/>
+    </Grid>
+</Window>

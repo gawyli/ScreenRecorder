@@ -1,0 +1,90 @@
+<Page
+    x:Class="ScreenRecorder.UI.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScreenRecorder.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style TargetType="ComboBox" x:Key="OptionComboBoxStyle">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="MinWidth" Value="150" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="CheckBox" x:Key="OptionCheckBoxStyle">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="MinWidth" Value="150" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="RootGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="PreviewContainerGrid" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Canvas Grid.Row="0" x:Name="CapturePreviewCanvas"
+                    Margin="10"
+                    Background="LightGray" />
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="5">
+                    <TextBlock x:Name="CaptureInfoTextBlock" Text="Pick something to capture"  HorizontalAlignment="Stretch" HorizontalTextAlignment="Center" />
+                    <Button x:Name="CaptureButton" Margin="0,25, 0, 0" HorizontalAlignment="Center" Click="CaptureButton_Click">
+                        <FontIcon Glyph="&#xE8FC;" FontFamily="Segoe MDL2 Assets" FontSize="24" />
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <StackPanel HorizontalAlignment="Right">
+                        <TextBlock Text="Options" HorizontalAlignment="Stretch" HorizontalTextAlignment="Center" />
+                        <ComboBox x:Name="ResolutionComboBox" Style="{StaticResource OptionComboBoxStyle}" Header="Resolution" ToolTipService.ToolTip="Resolution">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="local:ResolutionItem">
+                                    <TextBlock Text="{x:Bind DisplayName}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="BitrateComboBox" Style="{StaticResource OptionComboBoxStyle}" Header="Bit Rate" ToolTipService.ToolTip="Bitrate">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="local:BitrateItem">
+                                    <TextBlock Text="{x:Bind DisplayName}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Name="FrameRateComboBox" Style="{StaticResource OptionComboBoxStyle}" Header="Frame Rate" ToolTipService.ToolTip="Frame Rate">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="local:FrameRateItem">
+                                    <TextBlock Text="{x:Bind DisplayName}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <CheckBox x:Name="IncludeCursorCheckBox" Style="{StaticResource OptionCheckBoxStyle}" Content="Include the cursor" Visibility="Collapsed" IsChecked="true" />
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Button x:Name="StartRecordingButton" Content="Start Recording" HorizontalAlignment="Center" Margin="0, 10" IsEnabled="False" Click="StartRecordingButton_Click" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
